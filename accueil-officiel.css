@@ -1,0 +1,315 @@
+/* =========================================================
+   ACCUEIL OFFICIEL — crème / bleu marine / or
+   Version consolidée : remplace l'ancien fichier en entier.
+   À charger APRÈS style.css
+   ========================================================= */
+
+:root{
+  --hm-navy:#0b1f44;
+  --hm-gold:#b08d3f;
+  --hm-green:#0a6a3a;
+  --hm-cream:#fbf7ee;
+  --hm-text:#3b4763;
+  --hm-line:rgba(176,141,63,.28);
+  --hm-serif:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --hm-sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+
+body:not(.portal-active) #toastStack{ display:none !important; }
+
+#homeScreen{
+  font-family:var(--hm-sans);
+  background:linear-gradient(180deg,#fbf7ee 0%,#f6ecd9 70%,#f2e6cd 100%);
+  color:var(--hm-navy);
+}
+
+/* ---------- Arrière-plan ---------- */
+#homeScreen .hm-bg{ position:absolute; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
+.hm-skyline{
+  position:absolute; left:0; right:0; bottom:150px;
+  width:100%; height:230px; object-fit:cover; object-position:center bottom; opacity:.5;
+}
+
+/* ---------- En-tête compact ---------- */
+.hm-header{
+  position:sticky; top:0; z-index:10; flex:none;
+  display:flex; align-items:center; gap:18px;
+  padding:9px clamp(16px,3vw,48px);
+  background:rgba(251,247,238,.95);
+  border-bottom:1px solid rgba(176,141,63,.2);
+  backdrop-filter:blur(10px);
+}
+.hm-republic{ display:flex; align-items:center; gap:12px; flex:none; }
+.hm-seal{ height:54px; width:auto; flex:none; filter:drop-shadow(0 3px 8px rgba(11,31,68,.22)); }
+.hm-republic strong{
+  display:block; font:700 17px/1.15 var(--hm-serif);
+  letter-spacing:.01em; color:var(--hm-navy); text-transform:uppercase;
+}
+.hm-republic span{
+  display:block; margin-top:3px; font:500 10.5px var(--hm-sans);
+  letter-spacing:.14em; text-transform:uppercase; color:var(--hm-text);
+}
+.hm-sep{ width:1px; height:40px; background:var(--hm-line); flex:none; }
+
+.hm-brand{ display:flex; align-items:center; gap:11px; flex:none; min-width:0; }
+.hm-logo{ width:31px; height:39px; flex:none; filter:drop-shadow(0 3px 5px rgba(11,31,68,.25)); }
+.hm-brand strong{
+  display:block; font:700 19px/1.15 var(--hm-serif); color:var(--hm-navy); letter-spacing:-.005em;
+}
+.hm-brand span{
+  display:block; margin-top:2px; font:400 12px var(--hm-sans); color:var(--hm-text);
+}
+
+.hm-nav{ margin-left:auto; display:flex; align-items:center; gap:4px; }
+.hm-nav button{
+  position:relative; background:none; border:0; cursor:pointer;
+  padding:9px 14px; border-radius:10px;
+  font:600 12px var(--hm-sans); letter-spacing:.09em; text-transform:uppercase;
+  color:var(--hm-navy); transition:background .18s;
+}
+.hm-nav button:hover{ background:rgba(176,141,63,.12); }
+.hm-nav button.active{ background:rgba(212,175,55,.16); }
+.hm-nav button.active::after{
+  content:""; position:absolute; left:14px; right:14px; bottom:3px;
+  height:2px; border-radius:2px; background:var(--hm-gold);
+}
+
+.hm-flag{ display:none !important; }   /* drapeau masqué */
+
+.hm-burger{ display:none; margin-left:auto; background:none; border:0; cursor:pointer; padding:10px; }
+.hm-burger span{ display:block; width:26px; height:3px; background:var(--hm-navy); margin:5px 0; border-radius:2px; }
+
+/* ---------- Menu mobile ---------- */
+#homeScreen .hm-mobile{
+  position:fixed; inset:0; z-index:9;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px;
+  background:rgba(251,247,238,.98);
+  opacity:0; pointer-events:none; transition:opacity .2s;
+}
+#homeScreen .hm-mobile.open{ opacity:1; pointer-events:auto; }
+.hm-mobile button{ background:none; border:0; cursor:pointer; font:700 22px var(--hm-serif); color:var(--hm-navy); }
+.hm-mobile button.active{ color:var(--hm-gold); }
+
+/* ---------- Contenu principal ---------- */
+.hm-main{
+  position:relative; z-index:3; flex:1;
+  width:100%; max-width:1720px; margin:0 auto;
+  padding:clamp(28px,5vh,64px) clamp(20px,4.6vw,80px) 40px;
+  display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
+  gap:clamp(20px,3vw,56px); align-items:start;
+}
+
+.hm-eyebrow{
+  display:inline-flex; align-items:center; gap:10px; margin:0 0 26px;
+  padding:10px 18px; border-radius:999px;
+  background:rgba(212,175,55,.16); border:1px solid rgba(176,141,63,.3);
+  font:600 13px var(--hm-sans); letter-spacing:.04em;
+  color:var(--hm-navy);
+}
+.hm-eyebrow i{ font-size:14px; color:var(--hm-gold); }
+
+.hm-title{
+  margin:0 0 28px; font:800 clamp(40px,5vw,84px)/1.05 var(--hm-serif);
+  letter-spacing:-.03em; color:var(--hm-gold); min-height:2.15em;
+}
+.hm-title::first-line{ color:var(--hm-navy); }
+.hm-title .cursor{
+  display:inline-block; width:4px; height:.78em; margin-left:6px;
+  background:var(--hm-gold); vertical-align:-.04em;
+}
+
+.hm-desc{
+  max-width:640px; margin:0 0 34px;
+  font:400 clamp(16px,1.3vw,20px)/1.7 var(--hm-sans); color:var(--hm-text);
+}
+
+.hm-cta{ display:flex; flex-wrap:wrap; gap:16px; }
+.hm-btn{
+  display:inline-flex; align-items:center; gap:12px; cursor:pointer;
+  padding:19px 30px; border-radius:999px;
+  font:600 clamp(15px,1.2vw,18px) var(--hm-sans);
+  transition:transform .16s, box-shadow .16s, background .16s, color .16s;
+}
+.hm-btn:hover{ transform:translateY(-2px); }
+.hm-btn-primary{
+  background:var(--hm-green); color:#fff; border:2px solid var(--hm-green);
+  box-shadow:0 12px 28px rgba(10,106,58,.28);
+}
+.hm-btn-primary:hover{ box-shadow:0 16px 34px rgba(10,106,58,.36); }
+.hm-btn-ghost{
+  background:transparent; color:var(--hm-navy); border:2px solid var(--hm-navy);
+  padding:17px 26px; font-size:clamp(14px,1.05vw,17px);
+}
+.hm-btn-ghost:hover{ background:var(--hm-navy); color:#fff; }
+.hm-btn:focus-visible, .hm-nav button:focus-visible{ outline:3px solid var(--hm-gold); outline-offset:3px; }
+
+/* ---------- Visuel de droite (carte seule) ---------- */
+.hm-visual{ position:relative; min-height:420px; display:flex; justify-content:center; align-items:flex-start; }
+.hm-map{
+  width:100%; max-width:520px; height:auto;
+  filter:drop-shadow(0 22px 30px rgba(70,50,15,.28));
+}
+.hm-school{ display:none !important; }   /* fiche masquée, IDs conservés pour le JS */
+
+/* ---------- Tablette ---------- */
+@media (max-width:1180px){
+  .hm-republic span{ display:none; }
+  .hm-header{ gap:14px; }
+  .hm-nav button{ padding:9px 11px; font-size:11.5px; }
+}
+
+/* ---------- Tablette étroite / mobile ---------- */
+@media (max-width:920px){
+  .hm-nav, .hm-sep{ display:none; }
+  .hm-burger{ display:block; }
+  .hm-header{ padding:10px 18px; }
+  .hm-main{ grid-template-columns:minmax(0,1fr); gap:28px; padding:26px 18px 32px; }
+  .hm-copy{ min-width:0; }
+  .hm-title{
+    min-height:0; font-size:clamp(34px,9vw,60px);
+    overflow-wrap:normal; word-break:normal; hyphens:none;
+  }
+  .hm-desc{ max-width:none; }
+  .hm-visual{ min-height:0; }
+  .hm-map{ max-width:420px; }
+  .hm-skyline{ bottom:240px; height:150px; }
+}
+
+/* ---------- Petits téléphones ---------- */
+@media (max-width:560px){
+  .hm-republic strong{ font-size:13px; }
+  .hm-brand{ display:none; }
+  .hm-eyebrow{ font-size:12px; padding:9px 14px; margin-bottom:20px; }
+  .hm-cta{ flex-direction:column; }
+  .hm-btn{ width:100%; justify-content:center; padding:17px 20px; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .hm-btn, .hm-nav button{ transition:none; }
+}
+
+/* =========================================================
+   CORRECTIF : chiffres clés disposés horizontalement
+   (fonctionne avec l'ancien HTML .hm-kpis comme avec le nouveau .hm-bk)
+   ========================================================= */
+.hm-kpis{
+  display:grid; grid-template-columns:repeat(4,1fr);
+  width:100%; max-width:640px; box-sizing:border-box; margin-left:auto;
+  padding:18px 6px; border-radius:16px;
+  background:rgba(255,255,255,.94);
+  box-shadow:0 12px 34px rgba(80,60,20,.14);
+}
+.hm-kpi{ text-align:center; padding:0 8px; min-width:0; border-right:1px solid rgba(11,31,68,.1); }
+.hm-kpi:last-child{ border-right:0; }
+.hm-kpi .ic{
+  width:44px; height:44px; margin:0 auto 8px; border-radius:50%;
+  display:grid; place-items:center; color:#fff; font-size:18px;
+}
+.hm-kpi .ic.g{ background:#0a7a45; }
+.hm-kpi .ic.b{ background:#1e88e5; }
+.hm-kpi .ic.r{ background:#d32f2f; }
+.hm-kpi .ic.p{ background:#7e57c2; }
+.hm-kpi b{ display:block; font:700 clamp(22px,2vw,32px)/1.1 var(--hm-serif); color:var(--hm-navy); }
+.hm-kpi span{ display:block; margin-top:4px; font:500 12px var(--hm-sans); color:var(--hm-text); }
+
+/* Ancien logo (repère + toque) : mieux dimensionné si le SVG n'est pas encore collé */
+.hm-pin{ position:relative; width:30px; height:38px; flex:none; color:var(--hm-navy); }
+.hm-pin .fa-location-dot{ font-size:38px; line-height:1; }
+.hm-pin .fa-graduation-cap{ position:absolute; left:50%; top:10px; transform:translateX(-50%); font-size:11px; color:#fff; }
+
+/* En-tête : plus de menu coupé sur les fenêtres moyennes */
+.hm-header{ min-width:0; }
+.hm-nav{ flex:none; }
+@media (max-width:1500px){ .hm-brand span{ display:none; } }
+@media (max-width:1300px){ .hm-republic span{ display:none; } }
+@media (max-width:1100px){ .hm-brand{ display:none; } }
+
+@media (max-width:920px){
+  .hm-kpis{ max-width:none; margin:0 auto; }
+}
+@media (max-width:560px){
+  .hm-kpis{ grid-template-columns:repeat(2,1fr); row-gap:16px; }
+  .hm-kpi:nth-child(2){ border-right:0; }
+}
+
+
+/* =========================================================
+   BAS DE PAGE : barre de chiffres clés + bandeau de confiance
+   ========================================================= */
+.hm-bottom{ display:none !important; }   /* ancien bandeau, s'il reste dans le HTML */
+
+.hm-foot{ position:relative; z-index:5; flex:none; width:100%; }
+
+/* --- Barre des chiffres clés --- */
+.hm-stats{
+  display:grid; grid-template-columns:repeat(4,1fr);
+  padding:0 clamp(20px,4.6vw,80px);
+  background:linear-gradient(135deg,#0b1f44 0%,#12306a 100%);
+  border-top:3px solid var(--hm-gold);
+  color:#fff;
+}
+.hm-st{
+  display:flex; align-items:center; justify-content:center; gap:18px;
+  padding:26px 16px; min-width:0;
+  border-right:1px solid rgba(212,175,55,.28);
+}
+.hm-st:last-child{ border-right:0; }
+.hm-st .ic{
+  width:56px; height:56px; flex:none; border-radius:50%;
+  display:grid; place-items:center; font-size:22px; color:#fff;
+  border:2px solid rgba(255,255,255,.85);
+  box-shadow:0 0 0 5px rgba(255,255,255,.08);
+}
+.hm-st .ic.g{ background:#0f8a4f; }
+.hm-st .ic.b{ background:#1e7fdc; }
+.hm-st .ic.r{ background:#d63a3a; }
+.hm-st .ic.p{ background:#7c5cc4; }
+.hm-st b{
+  display:block; font:700 clamp(30px,3vw,46px)/1 var(--hm-serif);
+  color:#fff; font-variant-numeric:lining-nums tabular-nums; letter-spacing:-.01em;
+}
+.hm-st span{
+  display:block; margin-top:6px;
+  font:500 clamp(12px,1vw,15px) var(--hm-sans); color:#e9d9a6; letter-spacing:.02em;
+}
+
+/* --- Bandeau de confiance --- */
+.hm-trust{
+  display:grid; grid-template-columns:repeat(4,1fr);
+  padding:20px clamp(20px,4.6vw,80px);
+  background:#fffdf8; border-top:1px solid var(--hm-line);
+}
+.hm-tr{
+  display:flex; align-items:center; gap:14px; padding:0 20px; min-width:0;
+  border-right:1px solid var(--hm-line);
+}
+.hm-tr:first-child{ padding-left:0; }
+.hm-tr:last-child{ border-right:0; }
+.hm-tr .ti{
+  width:46px; height:46px; flex:none; border-radius:50%;
+  display:grid; place-items:center; font-size:18px;
+  color:var(--hm-gold); background:#fbf3df; border:1.5px solid var(--hm-gold);
+}
+.hm-tr strong{ display:block; font:700 clamp(13.5px,1vw,16px)/1.25 var(--hm-sans); color:var(--hm-navy); }
+.hm-tr em{ display:block; margin-top:3px; font:400 clamp(12px,.9vw,14px)/1.35 var(--hm-sans); font-style:normal; color:var(--hm-text); }
+
+.hm-skyline{ bottom:230px; }
+
+@media (max-width:1100px){
+  .hm-st{ flex-direction:column; text-align:center; gap:10px; }
+  .hm-tr{ flex-direction:column; align-items:flex-start; gap:10px; }
+}
+@media (max-width:920px){
+  .hm-stats{ grid-template-columns:1fr 1fr; padding:0 10px; }
+  .hm-st{ padding:20px 8px; border-bottom:1px solid rgba(212,175,55,.28); }
+  .hm-st:nth-child(2){ border-right:0; }
+  .hm-st:nth-child(n+3){ border-bottom:0; }
+  .hm-st .ic{ width:46px; height:46px; font-size:18px; }
+  .hm-trust{ grid-template-columns:1fr 1fr; gap:18px 0; padding:18px; }
+  .hm-tr{ flex-direction:row; align-items:center; padding:0 10px 0 0; border-right:0; }
+  .hm-skyline{ bottom:420px; height:150px; }
+}
+@media (max-width:560px){
+  .hm-st b{ font-size:28px; }
+  .hm-trust{ grid-template-columns:1fr; }
+}

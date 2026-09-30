@@ -1,0 +1,22 @@
+/* À charger APRÈS style.css : le portail devient 100 % public.
+   L'administration se fait uniquement sur admin.html. */
+
+#topbarModeSwitch,
+#btnConnect,
+.theme-tools,
+#adminAuthOverlay,
+#overlay,
+#homeScreen .home-cta-desktop,
+#homeScreen #homeAdminLinkMobile{
+  display:none !important;
+}
+
+/* Lien discret "Administration" dans le pied de page officiel */
+.home-official-foot a{
+  color:#d4af37;
+  text-decoration:none;
+  margin-left:10px;
+  padding-left:10px;
+  border-left:1px solid rgba(212,175,55,.4);
+}
+.home-official-foot a:hover{ text-decoration:underline; }

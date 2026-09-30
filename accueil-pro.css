@@ -1,0 +1,126 @@
+/* =========================================================
+   ACCUEIL PROFESSIONNEL — à charger APRÈS style.css
+   ========================================================= */
+
+/* Retire tout ce qui touche au mode public / admin sur l'accueil */
+#homeScreen .home-cta-desktop,
+#homeScreen #homeAdminLinkMobile,
+#homeScreen .mm-admin{ display:none !important; }
+
+/* Pas de notification (ex. « données restaurées ») par-dessus l'accueil */
+body:not(.portal-active) #toastStack{ display:none !important; }
+
+/* ---------- Bandeau officiel ---------- */
+.gov-bar{
+  position:relative; z-index:11; flex:none;
+  display:flex; align-items:center; gap:14px;
+  height:34px; padding:0 28px;
+  background:rgba(5,7,12,.88);
+  border-bottom:1px solid rgba(212,175,55,.22);
+  font:600 10.5px var(--font-body);
+  letter-spacing:.16em; text-transform:uppercase;
+  color:#fdfaf1;
+}
+.gov-bar em{
+  font-style:italic; font-weight:500; letter-spacing:.06em;
+  text-transform:none; color:#d4af37; font-size:11px;
+}
+.gov-bar .gov-admin{
+  margin-left:auto; color:rgba(253,250,241,.55);
+  text-decoration:none; letter-spacing:.1em; font-size:10px;
+  transition:color .15s;
+}
+.gov-bar .gov-admin:hover{ color:#d4af37; }
+
+.home-flag-strip{ position:relative; z-index:11; flex:none; display:flex; height:5px; }
+.home-flag-strip span{ flex:1; }
+.home-flag-strip span:nth-child(1){ background:#009639; }
+.home-flag-strip span:nth-child(2){ background:#FCD116; }
+.home-flag-strip span:nth-child(3){ background:#CE1126; }
+
+/* ---------- En-tête ---------- */
+#homeScreen .home-header{ height:88px; padding:0 40px; gap:28px; }
+#homeScreen .home-logo{ gap:16px; padding-right:0; border-right:0; }
+.home-seal{
+  height:56px; width:auto; flex:none;
+  filter:drop-shadow(0 3px 10px rgba(0,0,0,.6));
+}
+#homeScreen .home-logo .wordmark{ font-size:17px; letter-spacing:.1em; }
+#homeScreen .home-nav-links{ justify-content:flex-end; gap:6px; }
+#homeScreen .home-nav-links button{
+  font-size:12.5px; letter-spacing:.08em; padding:12px 16px;
+}
+#homeScreen .home-nav-links button::after{ left:16px; right:16px; height:2px; bottom:4px; }
+
+/* ---------- Hero ---------- */
+#homeScreen .home-main{
+  max-width:1240px;
+  padding:clamp(40px,7vh,88px) clamp(24px,4vw,48px) 36px;
+}
+#homeScreen .home-copy{ max-width:780px; }
+#homeScreen .home-headline{ font-size:clamp(40px,5.8vw,78px); letter-spacing:-.045em; }
+#homeScreen .home-desc{
+  max-width:600px; margin:0 0 30px;
+  font-size:17px; line-height:1.65;
+}
+#homeScreen .home-cta-row{ margin-bottom:44px; }
+#homeScreen .home-cta-row .btn{
+  font-size:14px; padding:15px 30px; letter-spacing:.02em;
+}
+
+/* ---------- Chiffres clés ---------- */
+.hp-stats{
+  display:grid; grid-template-columns:repeat(4,1fr);
+  width:min(820px,100%);
+  border:1px solid rgba(212,175,55,.35);
+  border-radius:18px; overflow:hidden;
+  background:rgba(10,12,18,.5);
+  backdrop-filter:blur(16px) saturate(1.2);
+  box-shadow:0 20px 50px rgba(0,0,0,.35);
+  animation:heroFadeUp .7s .3s cubic-bezier(.22,1,.36,1) both;
+}
+.hp-stat{
+  padding:22px 20px; border-right:1px solid rgba(212,175,55,.22);
+  transition:background .2s;
+}
+.hp-stat:last-child{ border-right:0; }
+.hp-stat:hover{ background:rgba(212,175,55,.1); }
+.hp-stat b{
+  display:block; font:800 34px/1 var(--font-body);
+  letter-spacing:-.03em; color:#fff;
+}
+.hp-stat b small{ font-size:.55em; color:#d4af37; margin-left:2px; }
+.hp-stat span{
+  display:block; margin-top:8px;
+  font:600 10.5px var(--font-body);
+  letter-spacing:.14em; text-transform:uppercase;
+  color:rgba(253,250,241,.62);
+}
+
+/* ---------- Tablette ---------- */
+@media (max-width:1050px){
+  #homeScreen .home-header{ padding:0 22px; height:76px; gap:14px; }
+  .home-seal{ height:46px; }
+  #homeScreen .home-logo .wordmark{ font-size:14px; }
+  .gov-bar{ padding:0 22px; }
+  .hp-stat b{ font-size:28px; }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width:760px){
+  .gov-bar{ padding:0 14px; height:30px; font-size:9px; letter-spacing:.1em; }
+  .gov-bar em, .gov-bar .gov-admin{ display:none; }
+  #homeScreen .home-header{ height:66px; padding:0 14px; }
+  .home-seal{ height:40px; }
+  #homeScreen .home-logo{ gap:10px; }
+  #homeScreen .home-logo .wordmark{ display:block; font-size:12.5px; }
+  #homeScreen .home-logo .wordmark::after{ font-size:6.5px; max-width:170px; }
+  #homeScreen .home-desc{ font-size:14.5px; }
+  #homeScreen .home-cta-row .btn{ padding:14px 18px; }
+  .hp-stats{ grid-template-columns:1fr 1fr; border-radius:14px; }
+  .hp-stat{ padding:16px 14px; }
+  .hp-stat:nth-child(2n){ border-right:0; }
+  .hp-stat:nth-child(1), .hp-stat:nth-child(2){ border-bottom:1px solid rgba(212,175,55,.22); }
+  .hp-stat b{ font-size:24px; }
+  .hp-stat span{ font-size:9px; }
+}

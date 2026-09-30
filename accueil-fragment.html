@@ -1,0 +1,139 @@
+<!-- =====================================================================
+     1) DANS <head> de index.html, ajoutez cette ligne (police des titres)
+     ===================================================================== -->
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700;8..60,800&display=swap" rel="stylesheet">
+
+<!-- =====================================================================
+     2) REMPLACEZ tout le bloc <div id="homeScreen"> ... </div> (accueil)
+        par celui-ci. Le reste de index.html ne change pas.
+     ===================================================================== -->
+<div id="homeScreen">
+
+  <div class="hm-bg" aria-hidden="true">
+    <img src="bamako-skyline.png" alt="" class="hm-skyline" onerror="this.style.display='none'">
+  </div>
+
+  <header class="hm-header">
+
+    <div class="hm-republic">
+      <img src="sceau-mali.png" alt="Sceau de la République du Mali" class="hm-seal" onerror="this.style.display='none'">
+      <div>
+        <strong>République du Mali</strong>
+        <span>Un Peuple – Un But – Une Foi</span>
+      </div>
+    </div>
+
+    <span class="hm-sep"></span>
+
+    <div class="hm-brand">
+      <!-- Logo vectoriel : repère de localisation + toque académique -->
+      <svg class="hm-logo" viewBox="0 0 48 60" role="img" aria-label="Logo SIG Écoles de Bamako">
+        <defs>
+          <linearGradient id="hmLogoG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#16346b"/>
+            <stop offset="1" stop-color="#0b1f44"/>
+          </linearGradient>
+        </defs>
+        <path d="M24 2C12.4 2 3 11.2 3 22.6 3 38 24 58 24 58S45 38 45 22.6C45 11.2 35.6 2 24 2Z" fill="url(#hmLogoG)"/>
+        <circle cx="24" cy="22.5" r="15.5" fill="none" stroke="#b08d3f" stroke-width="1.6"/>
+        <path d="M24 13 38 20.5 24 28 10 20.5Z" fill="#fff"/>
+        <path d="M17 25v5.5c0 2.2 3.1 4 7 4s7-1.8 7-4V25" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        <path d="M38 20.5v8" stroke="#d4af37" stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="38" cy="30" r="1.7" fill="#d4af37"/>
+      </svg>
+      <div>
+        <strong>SIG Écoles de Bamako</strong>
+        <span>Géolocalisation des établissements scolaires</span>
+      </div>
+    </div>
+
+    <nav class="hm-nav" aria-label="Navigation principale">
+      <button type="button" class="active" data-nav="accueil">Accueil</button>
+      <button type="button" data-nav="carte">Carte</button>
+      <button type="button" data-nav="stats">Statistiques</button>
+      <button type="button" data-nav="tableau">Tableau</button>
+    </nav>
+
+    <span class="hm-flag" aria-hidden="true"><i></i><i></i><i></i></span>
+
+    <button class="hm-burger" id="homeBurger" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+  </header>
+
+  <div class="hm-mobile" id="homeMobileMenu">
+    <button type="button" data-nav="accueil">Accueil</button>
+    <button type="button" data-nav="carte">Carte</button>
+    <button type="button" data-nav="stats">Statistiques</button>
+    <button type="button" data-nav="tableau">Tableau</button>
+  </div>
+
+  <main class="hm-main">
+
+    <section class="hm-copy">
+
+      <p class="hm-eyebrow">
+        <i class="fa-solid fa-location-dot"></i>
+        Système d'information géographique
+      </p>
+
+      <h1 class="hm-title" id="homeHeadline">
+        <span id="homeHeadlineText"></span><span class="cursor animate-blink" id="homeHeadlineCursor"></span>
+      </h1>
+
+      <p class="hm-desc">
+        Localisez les établissements scolaires du district de Bamako, analysez leur
+        répartition par commune, par type et par niveau, et appuyez vos décisions de
+        planification de l'éducation sur des données cartographiées.
+      </p>
+
+      <div class="hm-cta">
+        <button type="button" class="hm-btn hm-btn-primary" id="btnEnterPortal">
+          <i class="fa-solid fa-map"></i> Explorer la carte <span>→</span>
+        </button>
+        <button type="button" class="hm-btn hm-btn-ghost" id="btnEnterStats">
+          <i class="fa-solid fa-chart-column"></i> Voir les statistiques <span>→</span>
+        </button>
+      </div>
+
+    </section>
+
+    <section class="hm-visual" aria-label="Aperçu de la carte">
+      <img src="carte-bamako.png" alt="Carte du district de Bamako" class="hm-map" onerror="this.style.display='none'">
+
+      <!-- Masquée en CSS, conservée car accueil-officiel.js remplit ces champs -->
+      <article class="hm-school" id="hmSchool">
+        <div class="hm-school-photo"><img src="ecole.jpg" alt="" onerror="this.style.display='none'"></div>
+        <h3><i class="fa-solid fa-school"></i> <span id="hmSchName">École de Bamako</span></h3>
+        <ul>
+          <li><i class="fa-solid fa-building-columns"></i> Type : <b id="hmSchType">—</b></li>
+          <li><i class="fa-solid fa-graduation-cap"></i> Niveau : <b id="hmSchNiveau">—</b></li>
+          <li><i class="fa-solid fa-location-dot"></i> Commune : <b id="hmSchCommune">—</b></li>
+          <li><i class="fa-solid fa-user-group"></i> Effectif : <b id="hmSchEff">—</b></li>
+        </ul>
+      </article>
+    </section>
+
+  </main>
+
+  <!-- BAS DE PAGE : chiffres clés + bandeau de confiance -->
+  <footer class="hm-foot">
+
+    <div class="hm-stats">
+      <div class="hm-st"><div class="ic g"><i class="fa-solid fa-school"></i></div><div><b id="hmSchools">—</b><span>Écoles</span></div></div>
+      <div class="hm-st"><div class="ic b"><i class="fa-solid fa-circle-check"></i></div><div><b id="hmFonct">—</b><span>Fonctionnelles</span></div></div>
+      <div class="hm-st"><div class="ic r"><i class="fa-solid fa-triangle-exclamation"></i></div><div><b id="hmNonFonct">—</b><span>Non fonctionnelles</span></div></div>
+      <div class="hm-st"><div class="ic p"><i class="fa-solid fa-users"></i></div><div><b id="hmStudents">—</b><span>Élèves</span></div></div>
+    </div>
+
+    <div class="hm-trust">
+      <div class="hm-tr"><span class="ti"><i class="fa-solid fa-location-crosshairs"></i></span><div><strong>Données fiables</strong><em>Collecte terrain 2026</em></div></div>
+      <div class="hm-tr"><span class="ti"><i class="fa-solid fa-database"></i></span><div><strong>Base de données sécurisée</strong><em>PostgreSQL / Supabase</em></div></div>
+      <div class="hm-tr"><span class="ti"><i class="fa-solid fa-map"></i></span><div><strong>Cartographie interactive</strong><em>Leaflet + OpenStreetMap</em></div></div>
+      <div class="hm-tr"><span class="ti"><i class="fa-solid fa-shield-halved"></i></span><div><strong>Meilleure planification</strong><em>de l'éducation au Mali</em></div></div>
+    </div>
+
+  </footer>
+
+</div>
