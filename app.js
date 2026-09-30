@@ -976,7 +976,7 @@ function showModule(module) {
 
   if (module === "carte") { exitFullscreenDrawer(); showCarteModule(); return; }
   if (module === "stats") { showStatsModule(); return; }
-  if (module === "tableau") { showTableModule(); return; }
+  if (module === "listes") { showTableModule(); return; }
 
 }
 
@@ -1004,7 +1004,7 @@ function showCarteModule() {
   if (table) { table.style.display = "block"; }
   if (stats) { stats.style.display = "none"; }
 
-  setText("drawerTitle", "Tableau des établissements");
+  setText("drawerTitle", "Listes des établissements");
 
   if (map) { setTimeout(() => { map.invalidateSize(); }, 100); }
 
@@ -1024,7 +1024,7 @@ function showTableModule() {
   if (table) { table.style.display = "block"; }
   if (stats) { stats.style.display = "none"; }
 
-  setText("drawerTitle", "Tableau des établissements");
+  setText("drawerTitle", "Listes des établissements");
   renderTable();
 
 }
@@ -1998,7 +1998,7 @@ function initTabs() {
 
       const module = tab.dataset.tab;
       if (module === "carte") { showModule("carte"); }
-      if (module === "tableau") { showModule("tableau"); }
+      if (module === "listes") { showModule("listes"); }
       if (module === "stats") { showModule("stats"); }
 
     });
