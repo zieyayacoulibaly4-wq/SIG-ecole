@@ -102,7 +102,8 @@ const HEADER_MAP = {
   "Nombre de salles de classe": "nombre_classes",
   "Statut de fonctionnement": "statut_fonctionnement",
   "Année de création": "annee_creation",
-  "Source de la donnée": "source_donnee"
+  "Source de la donnée": "source_donnee",
+  "Date de collecte": "date_collecte"
 };
 
 function parseCSV(text) {
@@ -135,12 +136,31 @@ function parseCSV(text) {
 
 const num = v => { const n = Number(v); return Number.isFinite(n) ? n : 0; };
 
+/* Entier ou null (jamais de chaîne vide) */
+const intOrNull = v => { const n = parseInt(v, 10); return Number.isFinite(n) ? n : null; };
+
+/* Nombre décimal ou null */
+const floatOrNull = v => {
+  if (v === null || v === undefined || String(v).trim() === "") return null;
+  const n = Number(String(v).replace(",", "."));
+  return Number.isFinite(n) ? n : null;
+};
+
+/* JJ/MM/AAAA -> AAAA-MM-JJ (ou null) */
+function toIsoDate(v) {
+  const s = String(v || "").trim();
+  let m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if (m) return m[3] + "-" + m[2].padStart(2, "0") + "-" + m[1].padStart(2, "0");
+  m = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  return m ? m[1] + "-" + m[2] + "-" + m[3] : null;
+}
+
 function toSchool(raw, i) {
   const m = {};
   Object.entries(HEADER_MAP).forEach(([h, k]) => { if (raw[h] !== undefined) m[k] = raw[h]; });
-  let lat = raw["_Position GPS de l'école_latitude"] || null;
-  let lon = raw["_Position GPS de l'école_longitude"] || null;
-  if ((!lat || !lon) && m.localisation) {
+  let lat = floatOrNull(raw["_Position GPS de l'école_latitude"]);
+  let lon = floatOrNull(raw["_Position GPS de l'école_longitude"]);
+  if ((lat === null || lon === null) && m.localisation) {
     const p = String(m.localisation).trim().split(/\s+/);
     const a = Number(p[0]), b = Number(p[1]);
     if (p.length >= 2 && Number.isFinite(a) && Number.isFinite(b) && Math.abs(a) <= 90 && Math.abs(b) <= 180) { lat = a; lon = b; }
@@ -153,14 +173,14 @@ function toSchool(raw, i) {
     commune: m.commune || "",
     quartier: m.quartier || "",
     adresse: m.adresse || "",
-    latitude: lat === "" ? null : lat,
-    longitude: lon === "" ? null : lon,
+    latitude: lat,
+    longitude: lon,
     effectif_total: num(m.effectif_total),
     nombre_classes: num(m.nombre_classes),
     statut_fonctionnement: m.statut_fonctionnement || "",
-    annee_creation: m.annee_creation || "",
+    annee_creation: intOrNull(m.annee_creation),
     source_donnee: m.source_donnee || "",
-    date_collecte: ""
+    date_collecte: toIsoDate(m.date_collecte)
   };
 }
 
@@ -181,7 +201,7 @@ async function handleFile(file) {
     pendingRows = rows.map(toSchool);
     pendingName = file.name;
 
-    const withGps = pendingRows.filter(s => Number.isFinite(Number(s.latitude)) && Number.isFinite(Number(s.longitude))).length;
+    const withGps = pendingRows.filter(s => s.latitude !== null && s.longitude !== null).length;
     $("preview").style.display = "block";
     $("preview").innerHTML =
       "<strong>" + esc(file.name) + "</strong> : " + pendingRows.length + " école(s), dont " + withGps + " avec coordonnées GPS." +
